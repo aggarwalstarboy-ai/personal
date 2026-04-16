@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>I'm Sorry Kriti ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    background: #ffe4ec;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+}
+
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.box {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+h1 {
+    color: #ff4d88;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.accept {
+    background: #ff99cc;
+    color: white;
+}
+
+.reject {
+    background: #ff4d4d;
+    color: white;
+}
+
+.heart {
+    position: absolute;
+    color: red;
+    animation: float 5s linear infinite;
+}
+
+@keyframes float {
+    0% {transform: translateY(0);}
+    100% {transform: translateY(-100vh);}
+}
+
+/* Fade animation */
+.fade {
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 Hidden Music -->
+<iframe id="musicPlayer" width="0" height="0"
+src=""
+frameborder="0" allow="autoplay">
+</iframe>
+
+<div class="container">
+    <div class="box" id="mainBox">
+        <h1>I am sorry Kriti ❤️</h1>
+        <p>Please forgive me 🥺</p>
+        <button class="accept" onclick="startApology()">Accept</button>
+        <button class="reject" onclick="startApology()">Reject</button>
+    </div>
+</div>
+
+<script>
+
+function startApology() {
+
+    // Play music
+    document.getElementById("musicPlayer").src =
+    "https://www.youtube.com/embed/HnLtNrvfZTU?autoplay=1&loop=1&playlist=HnLtNrvfZTU";
+
+    // Clear box
+    document.getElementById("mainBox").innerHTML = `
+        <h1 id="typingText"></h1>
+    `;
+
+    let message = "i am sorry ladoo kal raat ke liye mein bahut galat karta hu tumhare saath kal tumko akele aana pada ghr tak mujhe akele nahi chodna chahiye tha tumko ❤️";
+
+    let i = 0;
+
+    function typeEffect() {
+        if (i < message.length) {
+            document.getElementById("typingText").innerHTML += message.charAt(i);
+            i++;
+            setTimeout(typeEffect, 40);
+        } else {
+            showFinal();
+        }
+    }
+
+    typeEffect();
+}
+
+function showFinal() {
+    setTimeout(() => {
+        document.getElementById("mainBox").innerHTML = `
+            <div class="fade">
+                <h1>Will you forgive me? 💖</h1>
+                <button class="accept" onclick="finalLove()">Yes ❤️</button>
+            </div>
+        `;
+    }, 1000);
+}
+
+function finalLove() {
+    document.getElementById("mainBox").innerHTML = `
+        <div class="fade">
+            <h1>I love you so much ❤️🥺</h1>
+        </div>
+    `;
+}
+
+// Floating hearts
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 20 + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
+}
+
+setInterval(createHeart, 300);
+
+</script>
+
+</body>
+</html>
