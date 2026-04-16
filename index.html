@@ -62,7 +62,6 @@ button {
     100% {transform: translateY(-100vh);}
 }
 
-/* Fade animation */
 .fade {
     animation: fadeIn 1s ease-in-out;
 }
@@ -71,17 +70,15 @@ button {
     from {opacity: 0;}
     to {opacity: 1;}
 }
-
 </style>
 </head>
 
 <body>
 
-<!-- 🎵 Hidden Music -->
-<iframe id="musicPlayer" width="0" height="0"
-src=""
-frameborder="0" allow="autoplay">
-</iframe>
+<!-- 🎵 Local Music -->
+<audio id="bgMusic" loop>
+    <source src="lagjaagale.mp3" type="audio/mpeg">
+</audio>
 
 <div class="container">
     <div class="box" id="mainBox">
@@ -96,11 +93,13 @@ frameborder="0" allow="autoplay">
 
 function startApology() {
 
-    // Play music
-    document.getElementById("musicPlayer").src =
-    "https://www.youtube.com/embed/HnLtNrvfZTU?autoplay=1&loop=1&playlist=HnLtNrvfZTU";
+    // 🎵 Play music
+    let music = document.getElementById("bgMusic");
+    music.volume = 0.5;
+    music.currentTime = 20; // start from emotional part
+    music.play();
 
-    // Clear box
+    // Clear box and start typing
     document.getElementById("mainBox").innerHTML = `
         <h1 id="typingText"></h1>
     `;
@@ -141,13 +140,13 @@ function finalLove() {
     `;
 }
 
-// Floating hearts
+// ❤️ Floating hearts
 function createHeart() {
     const heart = document.createElement("div");
     heart.classList.add("heart");
     heart.innerHTML = "❤️";
     heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = Math.random() * 20 + 20 + "px";
+    heart.style.fontSize = (Math.random() * 20 + 20) + "px";
     document.body.appendChild(heart);
 
     setTimeout(() => {
